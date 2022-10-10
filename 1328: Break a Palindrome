@@ -1,0 +1,14 @@
+class Solution:
+    def breakPalindrome(self, s: str) -> str:
+        l=len(s)
+        end=l//2-1
+        i=0
+        while(i<=end and s[i]=='a'):
+            i+=1
+        if(l==1):
+            return ""
+        elif(i>end):
+            s=s[:-1]+'b'
+        else:
+            s=s[:i]+'a'+s[(i+1):]
+        return s
