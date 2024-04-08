@@ -13,7 +13,7 @@ class Solution:
                 unmet += 1
                 last_elem = students.pop()
                 students.insert(0, last_elem)
-            if students and len(students) == unmet:
+            if len(students) == unmet:
                 return unmet
         return 0
         
