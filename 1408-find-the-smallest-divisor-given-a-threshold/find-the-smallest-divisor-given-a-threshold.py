@@ -2,7 +2,8 @@ import math
 class Solution:
     def smallestDivisor(self, nums: List[int], threshold: int) -> int:
         def isLessThanOrEqualToThreshold (divisor: int):
-            result = sum(int(math.ceil(num/divisor)) for num in nums)
+            one_less_divisor = divisor - 1
+            result = sum((num+one_less_divisor)//divisor for num in nums)
             return result <= threshold
         
         start, end = 1, max(nums)
