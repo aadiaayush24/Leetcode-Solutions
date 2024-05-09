@@ -18,10 +18,10 @@ class Solution:
         start, end = 1, max(bloomDay)
         if len(bloomDay) < (m*k):
             return -1
-        while (start < end):
+        while (start <= end):
             mid = start + (end - start)//2
             if checkBouquetPossible(mid):
-                end = mid
+                end = mid -1
             else:
                 start = mid + 1
         return start 
