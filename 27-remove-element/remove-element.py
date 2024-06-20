@@ -8,7 +8,7 @@ class Solution:
         while (right >=0 and nums[right] == val):
             right -= 1
         
-        while (left<len(nums) and right>=0 and left < right):
+        while (left < right):
             if (nums[left] == val):
                 nums[left], nums[right] = nums[right], nums[left]
             left += 1
