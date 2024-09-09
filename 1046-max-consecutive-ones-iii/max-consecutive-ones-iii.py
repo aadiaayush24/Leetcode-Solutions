@@ -9,9 +9,8 @@ class Solution:
             if (nums[right] == 0):
                 zeroes += 1
             if (zeroes > k):
-                while (nums[left] != 0):
-                    left += 1
-                zeroes -= 1
+                if nums[left] == 0:
+                    zeroes -= 1
                 left += 1
             else:
                 length = right - left + 1
