@@ -3,14 +3,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        def reverse(start, end):
-            if start < end:
-                nums[start], nums[end] = nums[end], nums[start]
-                reverse(start+1, end-1)
-            return
-        k = k % len(nums)
-        l = len(nums)-1
-        reverse(l-k+1, l)
-        reverse(0, l-k)
-        reverse(0, l)
-        return    
+        st = []
+        n = len(nums)
+        k = k%n
+        for i in range(n-1, n-k-1, -1):
+            st.append(nums[i])
+        for j in range(n-1, k-1, -1):
+            nums[j] = nums[j-k]
+        for m in range(k):
+            nums[m] = st.pop()
+        return
