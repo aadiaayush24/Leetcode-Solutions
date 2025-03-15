@@ -1,17 +1,23 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        def recursion(index):
-            if index == n:
-                return True
-            if index in memo:
-                return memo[index]
-            for i in range(index+1, n+1):
-                if s[index:i] in wordDict and recursion(i):
-                    memo[index] = True
-                    return True
-            memo[index] = False
-            return False
+        setWordDict = set(wordDict)
         memo = {}
-        wordDict = set(wordDict)
-        n = len(s)
-        return recursion(0)
+        def checkWordInDict(word: str):
+            if word in memo:
+                return memo[word]
+            if not word:
+                return True
+            subStr = ""
+            for i in range(0, len(word)):
+                subStr += word[i]
+                if subStr in setWordDict:
+                    memo[subStr] = True
+                    if (i+1 == len(word)):
+                        return True
+                    if (checkWordInDict(word[i+1:])):
+                        return True
+                else:
+                    memo[word] = False
+
+            return False
+        return checkWordInDict(s)
