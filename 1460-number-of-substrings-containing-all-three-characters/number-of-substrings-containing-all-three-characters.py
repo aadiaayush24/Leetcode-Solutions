@@ -1,12 +1,11 @@
 class Solution:
     def numberOfSubstrings(self, s: str) -> int:
-        idxLastSeen = {'a':-1, 'b':-1, 'c':-1}
-        l = len(s)
+        idxLastSeen = [-1, -1, -1]
         count = 0
-        for i in range(l):
+        for i in range(len(s)):
             currChar = s[i]
-            idxLastSeen[currChar] = i
-            minIndex = min(idxLastSeen.values())
+            idxLastSeen[ord(currChar)-ord('a')] = i
+            minIndex = min(idxLastSeen)
             count += minIndex + 1 
         return count
             
