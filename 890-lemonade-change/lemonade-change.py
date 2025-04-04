@@ -19,7 +19,6 @@ class Solution:
                 if not change(cash, target):
                     return False
             cash[bill] += 1
-            print(cash)
         return True
             
             
