@@ -26,7 +26,7 @@ class Solution {
             }
             tail.next=min;
             tail=tail.next;
-            tail.next=null;
+            // tail.next=null;
         }
         return head.next;
 
