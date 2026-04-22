@@ -9,19 +9,17 @@ class Solution {
 
     public List<Integer> countSmaller(int[] nums) {
         int n = nums.length;
-        int[] result = new int[n];
-        Arrays.fill(result, 0);
+        List<Integer> result = new ArrayList<>(Collections.nCopies(n, 0));
         Pair[] arr = new Pair[n];
 
         for (int i=0; i<n; i++) {
             arr[i] = new Pair(nums[i], i);
         }
         mergeSort(arr, 0, n-1, result);
-        List<Integer> res=Arrays.stream(result).boxed().toList();
-        return res;
+        return result;
     }
 
-    public void mergeSort(Pair[] arr, int left, int right, int[] result) {
+    public void mergeSort(Pair[] arr, int left, int right, List<Integer> result) {
         if (left >= right) return;
 
         int mid = left+(right-left)/2;
@@ -30,7 +28,7 @@ class Solution {
         merge(arr, left, mid, right, result);
     }
 
-    public void merge(Pair[] arr, int left, int mid, int right, int[] result) {
+    public void merge(Pair[] arr, int left, int mid, int right, List<Integer> result) {
         Pair[] temp=new Pair[right-left+1];
 
         int i=left, j=mid+1, k=0;
@@ -41,12 +39,12 @@ class Solution {
                 rightCount++;
             }
             else {
-                result[arr[i].idx] += rightCount;
+                result.set(arr[i].idx, result.get(arr[i].idx)+rightCount);
                 temp[k++] = arr[i++];
             }
         }
         while (i <= mid) {
-            result[arr[i].idx] += rightCount;
+            result.set(arr[i].idx, result.get(arr[i].idx)+rightCount);
             temp[k++]=arr[i++];
         }
         while (j <= right) {
