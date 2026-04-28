@@ -16,9 +16,14 @@ class Solution {
         return true;
     }
     public int splitArray(int[] nums, int k) {
-        int left= Arrays.stream(nums).max().getAsInt();
-        int right=Arrays.stream(nums).sum();
-
+        // int left= Arrays.stream(nums).max().getAsInt();
+        // int right=Arrays.stream(nums).sum();
+        int left=0, right=0;
+        for (int n: nums) {
+            left = Math.max(left, n);
+            right += n;
+        }
+        
         while (left<right) {
             int mid = (left + (right-left)/2);
             if (isSumPossibleInLTEKSub(nums, mid, k)) {
